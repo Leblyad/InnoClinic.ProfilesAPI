@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnoClinic.ProfilesAPI", "InnoClinic.ProfilesAPI\InnoClinic.ProfilesAPI.csproj", "{446EB660-E813-44E7-9B6C-ABAB640B3013}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InnoClinic.ProfilesAPI", "InnoClinic.ProfilesAPI\InnoClinic.ProfilesAPI.csproj", "{446EB660-E813-44E7-9B6C-ABAB640B3013}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InnoClinic.ProfilesAPI.Core", "InnoClinic.ProfilesAPI.Core\InnoClinic.ProfilesAPI.Core.csproj", "{C652FC74-025C-4065-B1D3-6C2F638A3EE1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InnoClinic.ProfilesAPI.Infrastructure", "InnoClinic.ProfilesAPI.Infrastructure\InnoClinic.ProfilesAPI.Infrastructure.csproj", "{5045D7C4-FE69-4BBC-AC75-5875D6FA3DE3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnoClinic.ProfilesAPI.Application", "InnoClinic.ProfilesAPI.Application\InnoClinic.ProfilesAPI.Application.csproj", "{7421AD58-305D-4286-92D5-DF53219C04F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{446EB660-E813-44E7-9B6C-ABAB640B3013}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{446EB660-E813-44E7-9B6C-ABAB640B3013}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{446EB660-E813-44E7-9B6C-ABAB640B3013}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C652FC74-025C-4065-B1D3-6C2F638A3EE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C652FC74-025C-4065-B1D3-6C2F638A3EE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C652FC74-025C-4065-B1D3-6C2F638A3EE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C652FC74-025C-4065-B1D3-6C2F638A3EE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5045D7C4-FE69-4BBC-AC75-5875D6FA3DE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5045D7C4-FE69-4BBC-AC75-5875D6FA3DE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5045D7C4-FE69-4BBC-AC75-5875D6FA3DE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5045D7C4-FE69-4BBC-AC75-5875D6FA3DE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7421AD58-305D-4286-92D5-DF53219C04F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7421AD58-305D-4286-92D5-DF53219C04F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7421AD58-305D-4286-92D5-DF53219C04F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7421AD58-305D-4286-92D5-DF53219C04F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
