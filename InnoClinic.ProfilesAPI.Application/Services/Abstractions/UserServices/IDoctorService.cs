@@ -1,5 +1,6 @@
 ﻿using InnoClinic.ProfilesAPI.Application.DataTransferObjects.Doctor;
 using InnoClinic.ProfilesAPI.Core.Entities.Models;
+using InnoClinic.ProfilesAPI.Core.Entities.QueryParameters.UserParameters;
 
 namespace InnoClinic.ProfilesAPI.Application.Services.Abstractions.UserServices
 {
@@ -10,5 +11,6 @@ namespace InnoClinic.ProfilesAPI.Application.Services.Abstractions.UserServices
         Task<DoctorDto> CreateDoctorAsync(DoctorForCreationDto doctor);
         Task UpdateDoctorAsync(Guid doctorId, DoctorForUpdateDto doctor);
         Task DeleteDoctorAsync(Guid doctorId);
+        Task<IEnumerable<DoctorDto>> GetDoctorsByParameters(DoctorParameters parameters);
     }
 }

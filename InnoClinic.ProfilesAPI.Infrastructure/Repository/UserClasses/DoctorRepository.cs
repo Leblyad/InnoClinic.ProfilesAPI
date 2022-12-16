@@ -1,5 +1,6 @@
 ﻿using InnoClinic.ProfilesAPI.Core.Contracts.Repositories.UserRepositories;
 using InnoClinic.ProfilesAPI.Core.Entities.Models;
+using InnoClinic.ProfilesAPI.Core.Entities.QueryParameters.UserParameters;
 using Microsoft.EntityFrameworkCore;
 
 namespace InnoClinic.ProfilesAPI.Infrastructure.Repository.UserClasses
@@ -31,5 +32,10 @@ namespace InnoClinic.ProfilesAPI.Infrastructure.Repository.UserClasses
         public async Task<Doctor> GetDoctorAsync(Guid doctorId, bool trackChanges = false) =>
             await FindByCondition(doctor => doctor.Id.Equals(doctorId), trackChanges)
                 .SingleOrDefaultAsync();
+
+        public async Task<IEnumerable<Doctor>> GetDoctorsByParameters(DoctorParameters parameters)
+        {
+            return await GetByParameters(parameters).ToListAsync();
+        }
     }
 }

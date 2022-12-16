@@ -1,5 +1,6 @@
 ﻿using InnoClinic.ProfilesAPI.Application.DataTransferObjects.Doctor;
 using InnoClinic.ProfilesAPI.Application.Services.Abstractions;
+using InnoClinic.ProfilesAPI.Core.Entities.QueryParameters.UserParameters;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -54,6 +55,14 @@ namespace InnoClinic.ProfilesAPI.Controllers
             await _serviceManager.Doctor.DeleteDoctorAsync(doctorId);
 
             return NoContent();
+        }
+
+        [HttpGet("/filter")]
+        public async Task<IActionResult> GetDoctorsByParameters([FromQuery] DoctorParameters parameters)
+        {
+            var doctorsCollection = await _serviceManager.Doctor.GetDoctorsByParameters(parameters);
+
+            return Ok(doctorsCollection);
         }
     }
 }

@@ -4,6 +4,7 @@ using InnoClinic.ProfilesAPI.Application.Services.Abstractions.UserServices;
 using InnoClinic.ProfilesAPI.Core.Contracts.Repositories;
 using InnoClinic.ProfilesAPI.Core.Contracts.Repositories.UserRepositories;
 using InnoClinic.ProfilesAPI.Core.Entities.Models;
+using InnoClinic.ProfilesAPI.Core.Entities.QueryParameters.UserParameters;
 using InnoClinic.ProfilesAPI.Core.Exceptions;
 using InnoClinic.ProfilesAPI.Core.Exceptions.UserExceptions;
 
@@ -62,6 +63,18 @@ namespace InnoClinic.ProfilesAPI.Application.Services.UserServices
             }
 
             return _mapper.Map<DoctorDto>(doctor);
+        }
+
+        public async Task<IEnumerable<DoctorDto>> GetDoctorsByParameters(DoctorParameters parameters)
+        {
+            if(parameters == null)
+            {
+                throw new CustomNullReferenceException(typeof(DoctorParameters));
+            }
+
+            var doctorsCollection = await _repositoryManager.Doctors.GetDoctorsByParameters(parameters);
+
+            return _mapper.Map<IEnumerable<DoctorDto>>(doctorsCollection);
         }
 
         public async Task UpdateDoctorAsync(Guid doctorId, DoctorForUpdateDto doctor)
