@@ -56,13 +56,5 @@ namespace InnoClinic.ProfilesAPI.Controllers
 
             return NoContent();
         }
-
-        [HttpGet("/filter")]
-        public async Task<IActionResult> GetDoctorsByParameters([FromQuery] DoctorParameters parameters)
-        {
-            var doctorsCollection = await _serviceManager.Doctor.GetDoctorsByParameters(parameters);
-
-            return Ok(doctorsCollection);
-        }
     }
 }

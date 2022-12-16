@@ -32,10 +32,5 @@ namespace InnoClinic.ProfilesAPI.Infrastructure.Repository.UserClasses
         public async Task<Doctor> GetDoctorAsync(Guid doctorId, bool trackChanges = false) =>
             await FindByCondition(doctor => doctor.Id.Equals(doctorId), trackChanges)
                 .SingleOrDefaultAsync();
-
-        public async Task<IEnumerable<Doctor>> GetDoctorsByParameters(DoctorParameters parameters)
-        {
-            return await GetByParameters(parameters).ToListAsync();
-        }
     }
 }

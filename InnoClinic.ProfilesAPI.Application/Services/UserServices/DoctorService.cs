@@ -53,18 +53,6 @@ namespace InnoClinic.ProfilesAPI.Application.Services.UserServices
             return _mapper.Map<IEnumerable<DoctorDto>>(doctorsCollection);
         }
 
-        public async Task<DoctorDto> GetDoctorAsync(Guid doctorId)
-        {
-            var doctor = await _repositoryManager.Doctors.GetDoctorAsync(doctorId);
-
-            if(doctor == null)
-            {
-                throw new DoctorNotFoundException(doctorId);
-            }
-
-            return _mapper.Map<DoctorDto>(doctor);
-        }
-
         public async Task<IEnumerable<DoctorDto>> GetDoctorsByParameters(DoctorParameters parameters)
         {
             if(parameters == null)

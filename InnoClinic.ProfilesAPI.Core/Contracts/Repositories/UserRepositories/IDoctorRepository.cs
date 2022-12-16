@@ -9,6 +9,5 @@ namespace InnoClinic.ProfilesAPI.Core.Contracts.Repositories.UserRepositories
         Task<Doctor> GetDoctorAsync(Guid doctorId, bool trackChanges = false);
         Task CreateDoctorAsync(Doctor doctor);
         Task DeleteDoctorAsync(Doctor doctor);
-        Task<IEnumerable<Doctor>> GetDoctorsByParameters(DoctorParameters parameters);
     }
 }
