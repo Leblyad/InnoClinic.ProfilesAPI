@@ -35,48 +35,43 @@ namespace InnoClinic.ProfilesAPI.Infrastructure.Repository
 
         public void Update(T entity) => RepositoryContext.Set<T>().Update(entity);
 
-        public IQueryable<T> GetByParameters(QueryStringParameters parameters)
+        //FirstName,LastName
+        //Кирилл,Лебедев
+        public IQueryable<T> GetByManyParameters(QueryStringParameters parameters)
         {
-            IQueryable<T> queryableData = FindAll(trackChanges: false);
+            int i = 0;
+            var itemsQuery = FindAll(trackChanges: false);
+            var nameArray = parameters.PropertyName.Split(',');
+            var valueArray = parameters.PropertyValue.Split(',');
 
-            PropertyInfo propInfo = typeof(T).GetProperty(parameters.PropertyName);
-            ParameterExpression pe = Expression.Parameter(typeof(T), parameters.PropertyName);
+            if (nameArray.Length == valueArray.Length)
+            {
+                while (nameArray.Length > i)
+                {
+                    itemsQuery = FilterData(itemsQuery, nameArray[i], valueArray[i]);
+                    i++;
+                }
+            }
+
+            return itemsQuery;
+        }
+
+        public IQueryable<T> FilterData(IQueryable<T> queryableData, string PropertyName, string PropertyValue)
+        {
+            PropertyInfo propInfo = typeof(T).GetProperty(PropertyName);
+            ParameterExpression pe = Expression.Parameter(typeof(T), PropertyName);
             Expression left = Expression.Property(pe, propInfo);
-            Expression right = Expression.Constant(parameters.PropertyValue, propInfo.PropertyType);
+            Expression right = Expression.Constant(PropertyValue, propInfo.PropertyType);
             Expression predicateBody = Expression.Equal(left, right);
 
             MethodCallExpression whereCallExpression = Expression.Call(
-                typeof(Queryable),
-                "Where",
-                new Type[] { queryableData.ElementType },
-                queryableData.Expression,
-                Expression.Lambda<Func<T, bool>>(predicateBody, new ParameterExpression[] { pe }));
+                                typeof(Queryable),
+                                "Where",
+                                new Type[] { queryableData.ElementType },
+                                queryableData.Expression,
+                                Expression.Lambda<Func<T, bool>>(predicateBody, new ParameterExpression[] { pe }));
 
             return queryableData.Provider.CreateQuery<T>(whereCallExpression).Cast<T>();
         }
-
-        //public IQueryable<T> GetByParameters(QueryStringParameters parameters, IQueryable<T> queryableData)
-        //{
-        //    int i = 1;
-        //    while (parameters.FieldsForFilterBy >= i)
-        //    {
-        //        PropertyInfo propInfo = typeof(T).GetProperty(parameters.PropertyName[i]);
-        //        ParameterExpression pe = Expression.Parameter(typeof(T), parameters.PropertyName[i]);
-        //        Expression left = Expression.Property(pe, propInfo);
-        //        Expression right = Expression.Constant(parameters.PropertyValue, propInfo.PropertyType);
-        //        Expression predicateBody = Expression.Equal(left, right);
-
-        //        MethodCallExpression whereCallExpression = Expression.Call(
-        //            typeof(Queryable),
-        //            "Where",
-        //            new Type[] { queryableData.ElementType },
-        //            queryableData.Expression,
-        //            Expression.Lambda<Func<T, bool>>(predicateBody, new ParameterExpression[] { pe }));
-
-        //        queryableData = queryableData.Provider.CreateQuery<T>(whereCallExpression).Cast<T>();
-        //    }
-
-        //    return queryableData;
-        //}
     }
 }

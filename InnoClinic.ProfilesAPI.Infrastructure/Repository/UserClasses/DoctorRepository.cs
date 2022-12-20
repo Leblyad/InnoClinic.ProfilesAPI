@@ -35,7 +35,7 @@ namespace InnoClinic.ProfilesAPI.Infrastructure.Repository.UserClasses
 
         public async Task<IEnumerable<Doctor>> GetDoctorsByParameters(DoctorParameters parameters)
         {
-            return await GetByParameters(parameters).ToListAsync();
+            return await GetByManyParameters(parameters).ToListAsync();
         }
     }
 }
